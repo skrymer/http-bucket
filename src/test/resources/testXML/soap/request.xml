@@ -1,0 +1,5 @@
+<request xmlns="http://muspelheim.com">
+	<data>
+		<responseToReturn>response.xml</responseToReturn>
+	</data>
+</request>
