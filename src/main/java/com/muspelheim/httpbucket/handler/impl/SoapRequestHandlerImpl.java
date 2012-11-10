@@ -11,7 +11,7 @@ import com.muspelheim.httpbucket.mapping.Request2ScriptMapper;
 import com.muspelheim.httpbucket.mapping.SoapRequest2ScriptMapping;
 import com.muspelheim.httpbucket.soap.util.SoapUtils;
 
-public class SoapRequestHandlerImpl implements RequestHandler {
+public class SoapRequestHandlerImpl implements RequestHandler<SoapMessage, SoapMessage> {
 	
 	@Autowired
 	public void setSoapUtils(SoapUtils saajUtils){

@@ -36,7 +36,7 @@
   	</property>
   </bean>
   
-  <bean id="soapRequestHandler" class="com.muspelheim.httpbucket.soap.handler.impl.SoapRequestHandlerImpl"/>
+  <bean id="soapRequestHandler" class="com.muspelheim.httpbucket.handler.impl.SoapRequestHandlerImpl"/>
   
   <bean id="soapBucket" class="com.muspelheim.httpbucket.soap.SoapBucket"/>
   

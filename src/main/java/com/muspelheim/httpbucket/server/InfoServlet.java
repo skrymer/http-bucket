@@ -1,6 +1,7 @@
 package com.muspelheim.httpbucket.server;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -22,26 +23,40 @@ public class InfoServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.getOutputStream().println("<h1>Welcome to http-bucket</h1>");
-		resp.getOutputStream().println("<h2>Info:</h2>");
-		resp.getOutputStream().println("Resource dir: " + System.getProperty("resource.dir"));
-		resp.getOutputStream().println("<div>");
-		resp.getOutputStream().println("<h3>Soap request 2 script mappings:</h3>");
-		resp.getOutputStream().println("<ul>");
-		printSoapMappings(resp);		
-		resp.getOutputStream().println("</ul>");
-		resp.getOutputStream().println("<div>");
+		PrintWriter out = resp.getWriter();
+		
+		out.println("<h1>Welcome to http-bucket</h1>");
+		out.println("<hr/>");
+		printInfo(out);
+		printSoapMappings(out);		
+
+		out.flush();
 	}
 
 //-----------------
 // private methods
 //-----------------
 	
-	private void printSoapMappings(HttpServletResponse resp) throws IOException {
-	  for (SoapRequest2ScriptMapping mapping : soapRequestMapper.getMappings()) {
-			resp.getOutputStream().println("<li>");
-			resp.getOutputStream().println(mapping.toString());
-			resp.getOutputStream().println("</li>");		
+	private void printInfo(PrintWriter out) {
+    out.println("<div>");
+    out.println("<h3>Info:</h3>"); 
+    out.println("<ul>");    
+    out.println("<li>Mapping file: " + System.getProperty("request.2.script.mapping.file.path") + "</li>");
+    out.println("<li>Resource dir: " + System.getProperty("resource.dir") + "</li>");
+    out.println("</ul>");        
+    out.println("</div>");    
+  }
+
+  private void printSoapMappings(PrintWriter out) throws IOException {
+    out.println("<div>");
+    out.println("<h3>Soap request 2 script mappings:</h3>");
+    out.println("<ul>");	  
+    for (SoapRequest2ScriptMapping mapping : soapRequestMapper.getMappings()) {
+	    out.println("<li>");
+	    out.println(mapping.toString());
+	    out.println("</li>");		
     }
+	  out.println("</ul>");
+	  out.println("<div>");
   }
 }

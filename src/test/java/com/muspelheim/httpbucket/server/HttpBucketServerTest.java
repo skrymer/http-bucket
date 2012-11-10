@@ -1,8 +1,6 @@
 package com.muspelheim.httpbucket.server;
 
-import static com.jayway.restassured.RestAssured.expect;
 import static com.muspelheim.util.TestGroups.INTEGRATION_TEST;
-import static org.hamcrest.Matchers.hasItem;
 import static org.testng.Assert.assertEquals;
 
 import javax.xml.transform.Source;
@@ -46,7 +44,7 @@ public class HttpBucketServerTest extends AbstractTestNGSpringContextTests {
     sut.stop();
   }
   
-  @Test(description="GIVEN a file containing SOAP requests 2 script mappings \n" + 
+  @Test(description="GIVEN a file containing SOAP-requests 2 script mappings \n" + 
                     "WHEN a SOAP request is send \n" + 
                     "THEN the script associated with the request returns a response")
   public void testServer_getSoapResponse() throws Exception{

@@ -12,10 +12,10 @@ public class SoapBucket implements MessageEndpoint {
   private static final Logger LOG = Logger.getLogger(SoapBucket.class);
 
   @Autowired
-	public void setSoapRequestHandler(RequestHandler requestHandler){
+	public void setSoapRequestHandler(RequestHandler<SoapMessage, SoapMessage> requestHandler){
 		this.requestHandler = requestHandler;
 	}
-	private RequestHandler requestHandler; 
+	private RequestHandler<SoapMessage, SoapMessage> requestHandler; 
 
 	public void invoke(MessageContext messageContext) throws Exception {
 	  LOG.trace("HttpBucketEndpoint was invoked");
