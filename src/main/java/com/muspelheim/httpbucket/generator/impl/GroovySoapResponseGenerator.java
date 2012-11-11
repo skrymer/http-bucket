@@ -68,11 +68,8 @@ public class GroovySoapResponseGenerator implements SoapResponseGenerator {
 			GroovyScriptEngine gse = new GroovyScriptEngine(resourceDir.getFile().getAbsolutePath());			
 			Binding binding 			 = createBindings(requestPayload); 
 			
-			//Run script
 			gse.run(scriptName, binding);
-			
-			//Get outcome
-			payloadToReturn = (String)binding.getVariable(BINDING_NAME_RESPONSE_PAYLOAD);
+			payloadToReturn = (String)binding.getVariable(BINDING_NAME_RESPONSE_PAYLOAD);			
 			LOG.info("Returning payload: " + payloadToReturn);
 		} 
 		catch (Exception e) {
