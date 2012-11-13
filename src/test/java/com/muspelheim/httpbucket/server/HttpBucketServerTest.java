@@ -35,7 +35,6 @@ public class HttpBucketServerTest extends AbstractTestNGSpringContextTests {
     template = new WebServiceTemplate();
     template.setDefaultUri("http://localhost:9080/soap");        
     RestAssured.baseURI = "http://localhost:9080/rest";
-    System.setProperty("resource.dir", "src/test/resources/com/muspelheim/httpbucket/server");
     sut.start();
   }
 
@@ -44,27 +43,24 @@ public class HttpBucketServerTest extends AbstractTestNGSpringContextTests {
     sut.stop();
   }
   
-  @Test(description="GIVEN a file containing SOAP-requests 2 script mappings \n" + 
+  @Test(description="GIVEN a file containing qnames 2 script mappings \n" + 
                     "WHEN a SOAP request is send \n" + 
                     "THEN the script associated with the request returns a response")
   public void testServer_getSoapResponse() throws Exception{
-  	//GIVEN a file containing SOAP requests 2 script mappings
-  	System.setProperty("request.2.script.mapping.file.path", "/home/skrymer/Coding/projects/http-bucket/src/test/resources/com/muspelheim/httpbucket/server/request2scriptmappings.csv");  	
-  	
-  	//WHEN a SOAP request is send
-  	Source source = SOAP_UTILS.createSoapMessage("<request xmlns=\"http://muspelheim.com\"><data><responseToReturn>response.xml</responseToReturn></data></request>").getPayloadSource();
+  	//Create SOAP message and send
+	Source source = SOAP_UTILS.createSoapMessage("<request xmlns=\"http://muspelheim.com\"><data><responseToReturn>response.xml</responseToReturn></data></request>").getPayloadSource();
     DOMResult result = new DOMResult();
     template.sendSourceAndReceiveToResult(source, result);
         
-    //THEN the script associated with the request returns a response
+    //Check that the correct response was returned
     DOMSource resultAsSource = new DOMSource(result.getNode());
     String expectedXml = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><response>response</response>";
     assertEquals(SOAP_UTILS.getSourceAsString(resultAsSource), expectedXml);
   }
 
-  @Test(description="GIVEN a file containing rest requests 2 script mappings \n" +
-  									"WHEN a REST request is send \n" + 
-      							"THEN the script associated with the request returns a response")
+  @Test(description="GIVEN a file containing url 2 script mappings \n" +
+  					"WHEN a REST request is send \n" + 
+      				"THEN the script associated with the request returns a response")
   public void testServer_getRestResponse() throws Exception{
   	//Set groovy script
   	//TODO implement REST

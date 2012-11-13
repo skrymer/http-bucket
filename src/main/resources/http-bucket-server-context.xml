@@ -4,12 +4,13 @@
   xmlns:context="http://www.springframework.org/schema/context"
   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
-	
-  <import resource="rest-context.xml"/>
-  <import resource="soap-context.xml"/>
+
+  <context:property-placeholder location="classpath:test.properties" order="0" system-properties-mode="OVERRIDE"/>	
+  <context:property-placeholder location="classpath:default.properties" order="1" system-properties-mode="OVERRIDE"/>	
+  <context:annotation-config />
   	
-  <context:property-placeholder location="classpath:/default.properties" system-properties-mode="OVERRIDE"/>
-  <context:annotation-config/>
+  <import resource="rest-context.xml"/>
+  <import resource="soap-context.xml"/>	
   
   <bean id="httpBucketServer" class="com.muspelheim.httpbucket.server.HttpBucketServer"/>
   
