@@ -4,7 +4,7 @@ Http-bucket is based on a simple request 2 script mapping which lets you specify
  
 The following illustration shows the main concepts in http-bucket
 
-[/images/concept.png|width=1000px]
+![alt text](https://raw.github.com/wiki/skrymer/http-bucket/images/concept.png "Concept")
 
 http-bucket can run as a standalone or maven-plugin
 
