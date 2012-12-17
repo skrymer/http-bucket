@@ -10,7 +10,10 @@ http-bucket can run as a standalone or maven-plugin
 
 ### http-bucket as a maven-plugin 
 
-For this example wi'll create a soap-ws-stub with a script that get's invoked for any payloads with a QName off <![CDATA[<doc xmlns:x="http://example.com/ns/foo">]]> 
+For this example wi'll create a soap-ws-stub with a script that get's invoked for any payloads with a QName off: 
+```xml
+<doc xmlns:x="http://example.com/ns/foo"> 
+```
 
 First step is to create a mapping file. 
 
@@ -48,7 +51,7 @@ switch(responseToReturnText){
 1. A XmlParser is used for parsing the incomming request which are avaliable in the requestPayload variable
 2. Dependent on the data in the request a response is stored in the responsePayload variable which are then returned from the stub
 
-Add the following to your pom.xml
+The last step is to sconfigure the plugin in your pom.xml:
 
 ```xml
 ...
@@ -59,28 +62,35 @@ Add the following to your pom.xml
       <artifactId>http-bucket</artifactId>
       <version>0.1-SNAPSHOT</version>
       <executions>
-        <execution>
-          <id>start-http-bucket</id>
-          <phase>compile</phase>
-          <goals>
-            <goal>start</goal> [1]
-          </goals>
-          <configuration>
-            <keepAlive>true</keepAlive>
-            <request2scriptMappingFile>path/to/request2scriptmappings.csv</request2scriptMappingFile> [2]
-            <resourceDir>path/to/resourceDir</resourceDir> [3]
-          </configuration>
-        </execution>
+	<execution>
+	  <id>start-http-bucket</id>
+	  <phase>pre-integration-test</phase> [1]
+	  <goals>
+	    <goal>start</goal> 
+	  </goals>
+	  <configuration>
+	    <keepAlive>true</keepAlive>
+	    <request2scriptMappingFile>path/to/request2scriptmappings.csv</request2scriptMappingFile> [2]
+	    <resourceDir>path/to/resourceDir</resourceDir> [3]
+	  </configuration>
+	</execution>
+	<execution>
+	  <id>stop-http-bucket</id>
+	  <phase>post-integration-test</phase> [4]
+	  <goals>
+	    <goal>stop</goal> 
+	  </goals>
+	</execution>
       </executions>
     </plugin>
     ...
   <plugins>
 ...	
 ```
-
-Now configure the plugin:
-
-* 
+1. Define in which phase you want the plugin to start - we are using the pre-integration-test to start the bucket before our integration tests are executed
+2. Tell http-bucket were to find the mapping file
+3. Tell http-bucket were to find resource directory that should contain all scripts and any xml/json fragments
+4. Define in which phase you want the plugin to stop - we are using the post-integration-test to stop the bucket after our integration tests have been executed
 
 TODO: script vaiables
 
