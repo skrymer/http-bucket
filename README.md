@@ -62,25 +62,25 @@ The last step is to sconfigure the plugin in your pom.xml:
       <artifactId>http-bucket</artifactId>
       <version>0.1-SNAPSHOT</version>
       <executions>
-	<execution>
-	  <id>start-http-bucket</id>
-	  <phase>pre-integration-test</phase> [1]
-	  <goals>
-	    <goal>start</goal> 
-	  </goals>
-	  <configuration>
-	    <keepAlive>true</keepAlive>
-	    <request2scriptMappingFile>path/to/request2scriptmappings.csv</request2scriptMappingFile> [2]
-	    <resourceDir>path/to/resourceDir</resourceDir> [3]
-	  </configuration>
-	</execution>
-	<execution>
-	  <id>stop-http-bucket</id>
-	  <phase>post-integration-test</phase> [4]
-	  <goals>
-	    <goal>stop</goal> 
-	  </goals>
-	</execution>
+        <execution>
+          <id>start-http-bucket</id>
+          <phase>pre-integration-test</phase> [1]
+          <goals>
+            <goal>start</goal> 
+          </goals>
+          <configuration>
+            <keepAlive>true</keepAlive>
+            <request2scriptMappingFile>path/to/request2scriptmappings.csv</request2scriptMappingFile> [2]
+            <resourceDir>path/to/resourceDir</resourceDir> [3]
+          </configuration>
+        </execution>
+        <execution>
+          <id>stop-http-bucket</id>
+          <phase>post-integration-test</phase> [4]
+          <goals>
+            <goal>stop</goal> 
+          </goals>
+         </execution>
       </executions>
     </plugin>
     ...
