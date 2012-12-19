@@ -87,8 +87,8 @@
                 </goals>
                 <configuration>
                   <keepAlive>true</keepAlive>
-                  <request2scriptMappingFile>/home/nielses/fmit/g2b/trunk/fmit-g2b-webservice-ng/src/test/resources/http-bucket/mappings.csv</request2scriptMappingFile>
-                  <resourceDir>/home/nielses/fmit/g2b/trunk/fmit-g2b-webservice-ng/src/test/resources/http-bucket/resources</resourceDir>
+                  <request2scriptMappingFile>${basedir}/src/test/resources/com/muspelheim/httpbucket/server/request2scriptmappings.csv</request2scriptMappingFile>
+                  <resourceDir>${basedir}/src/test/resources/com/muspelheim/httpbucket/server/</resourceDir>
                 </configuration>
               </execution>
             </executions>
