@@ -14,15 +14,15 @@ import com.muspelheim.httpbucket.generator.exception.ResponseCouldNotBeGenerated
 import com.muspelheim.httpbucket.soap.util.SoapUtils;
 
 public class GroovySoapResponseGenerator implements SoapResponseGenerator {
-	private static final Logger LOG = Logger.getLogger(GroovySoapResponseGenerator.class);
+  private static final Logger LOG = Logger.getLogger(GroovySoapResponseGenerator.class);
 	
-	private static final String BINDING_NAME_RESPONSE_PAYLOAD = "responsePayload";
-	private static final String BINDING_NAME_REQUEST_PAYLOAD 	= "requestPayload";
-  private static final String BINDING_NAME_RESOURCE_DIR 		= "resourceDir";
-	private static final String BINDING_NAME_LOG 							= "log";
+  private static final String BINDING_NAME_RESPONSE_PAYLOAD = "responsePayload";
+  private static final String BINDING_NAME_REQUEST_PAYLOAD 	= "requestPayload";
+  private static final String BINDING_NAME_RESOURCE_DIR 	  = "resourceDir";
+  private static final String BINDING_NAME_LOG 				      = "log";
 	
   private FileSystemResource resourceDir;
-	private String scriptName;
+  private String scriptName;
 	
 	@Autowired
 	public void setSoapUtils(SoapUtils soapUtils){
@@ -35,7 +35,9 @@ public class GroovySoapResponseGenerator implements SoapResponseGenerator {
 	}
 
 	public String generateSoapResponse(String scriptName, SoapMessage request) throws ResponseCouldNotBeGeneratedException {
-		this.scriptName = scriptName;
+	  LOG.info("Generating response with script: " + scriptName);
+	  
+	  this.scriptName = scriptName;
 
 		String requestPayload = getRequestPayload(request);
 				

@@ -19,7 +19,7 @@ import com.jayway.restassured.RestAssured;
 import com.muspelheim.httpbucket.soap.util.SoapUtils;
 
 /**
- * @author Sonni Nielsen - nielses
+ * @author Sonni Nielsen
  */
 @Test(groups=INTEGRATION_TEST)
 @ContextConfiguration(locations="classpath:http-bucket-server-context.xml")

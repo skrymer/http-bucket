@@ -12,7 +12,9 @@
       <finalName>http-bucket</finalName>
       <plugins>
          <plugin>
+         	<groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
+            <version>2.5.1</version>
             <configuration>
                <source>1.6</source>
                <target>1.6</target>
@@ -85,8 +87,8 @@
                 </goals>
                 <configuration>
                   <keepAlive>true</keepAlive>
-                  <request2scriptMappingFile>${basedir}/src/test/resources/com/muspelheim/httpbucket/server/request2scriptmappings.csv</request2scriptMappingFile>
-                  <resourceDir>${basedir}/src/test/resources/com/muspelheim/httpbucket/server/</resourceDir>
+                  <request2scriptMappingFile>/home/nielses/fmit/g2b/trunk/fmit-g2b-webservice-ng/src/test/resources/http-bucket/mappings.csv</request2scriptMappingFile>
+                  <resourceDir>/home/nielses/fmit/g2b/trunk/fmit-g2b-webservice-ng/src/test/resources/http-bucket/resources</resourceDir>
                 </configuration>
               </execution>
             </executions>

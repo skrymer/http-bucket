@@ -2,6 +2,7 @@ package com.muspelheim.httpbucket.handler.impl;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.soap.SoapMessage;
 
@@ -12,7 +13,8 @@ import com.muspelheim.httpbucket.mapping.SoapRequest2ScriptMapping;
 import com.muspelheim.httpbucket.soap.util.SoapUtils;
 
 public class SoapRequestHandlerImpl implements RequestHandler<SoapMessage, SoapMessage> {
-	
+  private static final Logger LOG = Logger.getLogger(SoapRequestHandlerImpl.class);
+  
 	@Autowired
 	public void setSoapUtils(SoapUtils saajUtils){
 		this.soapUtils = saajUtils;
@@ -32,12 +34,15 @@ public class SoapRequestHandlerImpl implements RequestHandler<SoapMessage, SoapM
 	private SoapResponseGenerator soapResponseGenerator;
 
 	public SoapMessage handleRequest(SoapMessage request) {
-		List<SoapRequest2ScriptMapping> mappings = request2ScriptMapper.getMappings();
+	  LOG.info("Handling request.");
+	  
+	  List<SoapRequest2ScriptMapping> mappings = request2ScriptMapper.getMappings();
 		
 		for (SoapRequest2ScriptMapping mapping : mappings) {
-	    
 			if(canHandleRequest(mapping, request)){
-	    	String response = soapResponseGenerator.generateSoapResponse(mapping.getScriptName(), request);
+			  LOG.info("Can handle mapping for: " + mapping.toString());
+			  
+			  String response = soapResponseGenerator.generateSoapResponse(mapping.getScriptName(), request);
 	    	SoapMessage soapResponse = soapUtils.createSoapMessage(response);
 	    	                               
 	    	return soapResponse;
