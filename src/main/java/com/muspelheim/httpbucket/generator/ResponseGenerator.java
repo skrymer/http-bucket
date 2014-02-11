@@ -4,7 +4,7 @@ import org.springframework.ws.soap.SoapMessage;
 
 import com.muspelheim.httpbucket.generator.exception.ResponseCouldNotBeGeneratedException;
 
-public interface SoapResponseGenerator {
+public interface ResponseGenerator {
 
 	/**
 	 * Delegates the response generation to the given script

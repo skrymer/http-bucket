@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.muspelheim.httpbucket.handler.RequestHandler;
 
-public class RestfulBucket extends HttpServlet {
+public class RESTBucket extends HttpServlet {
   private static final long serialVersionUID = 7137368752006403671L;
   
   @Autowired 
